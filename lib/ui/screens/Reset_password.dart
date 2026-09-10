@@ -1,22 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/screens/sign_up_screen.dart';
+import 'package:task_manager/ui/screens/login_screen.dart';
 import 'package:task_manager/ui/widgets/screen_backround.dart';
 
 import 'forgot_password.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class Reset_passowrd extends StatefulWidget {
+  const Reset_passowrd({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<Reset_passowrd> createState() => _Reset_passowrdState();
 }
 
-final TextEditingController _emailController = TextEditingController();
 final TextEditingController _passwordController = TextEditingController();
+final TextEditingController _confirmPasswordController =
+    TextEditingController();
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-class _LoginScreenState extends State<LoginScreen> {
+class _Reset_passowrdState extends State<Reset_passowrd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,19 +32,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   const SizedBox(height: 100),
                   Text(
-                    'Get Start With',
+                    'Reset Password',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(hintText: 'Email'),
+                  const SizedBox(height: 5),
+                  Text(
+                    'password should be at least 6 characters',
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 15),
                   TextFormField(
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: InputDecoration(hintText: 'Password'),
+                    decoration: InputDecoration(hintText: 'New Password'),
+                  ),
+                  const SizedBox(height: 15),
+                  TextFormField(
+                    controller: _confirmPasswordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: 'Confirm New Password',
+                    ),
                   ),
                   const SizedBox(height: 20),
                   FilledButton(onPressed: () {}, child: Icon(Icons.login)),
@@ -51,13 +60,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   Center(
                     child: Column(
                       children: [
-                        TextButton(
-                          onPressed: _onTapForgotPasswordButton,
-                          child: Text(
-                            'forget password',
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                        ),
                         RichText(
                           text: TextSpan(
                             style: TextStyle(
@@ -66,10 +68,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.black,
                               decoration: TextDecoration.underline,
                             ),
-                            text: "Don't have account? ",
+                            text: "Already have account? ",
                             children: [
                               TextSpan(
-                                text: "Sign Up",
+                                text: "Log in",
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -77,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   decoration: TextDecoration.underline,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = _onTapSignUpButton,
+                                  ..onTap = _onTapLoginUpButton,
                               ),
                             ],
                           ),
@@ -94,10 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _onTapSignUpButton() {
+  void _onTapLoginUpButton() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SignUpScreen()),
+      MaterialPageRoute(builder: (context) => LoginScreen()),
     );
   }
 
@@ -110,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _confirmPasswordController.dispose();
     _passwordController.dispose();
     super.dispose();
   }

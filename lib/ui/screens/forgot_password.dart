@@ -1,22 +1,21 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/screens/sign_up_screen.dart';
+import 'package:task_manager/ui/screens/verify_Otp.dart';
 import 'package:task_manager/ui/widgets/screen_backround.dart';
 
-import 'forgot_password.dart';
+import 'login_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class Forgot_Password extends StatefulWidget {
+  const Forgot_Password({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<Forgot_Password> createState() => _Forgot_PasswordState();
 }
 
 final TextEditingController _emailController = TextEditingController();
-final TextEditingController _passwordController = TextEditingController();
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-class _LoginScreenState extends State<LoginScreen> {
+class _Forgot_PasswordState extends State<Forgot_Password> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,33 +30,28 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   const SizedBox(height: 100),
                   Text(
-                    'Get Start With',
+                    'Enter Email Address',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 5),
+                  Text(
+                    "A 6 digit verification code will be sent to your email address",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 10),
                   TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(hintText: 'Email'),
                   ),
                   const SizedBox(height: 20),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(hintText: 'Password'),
+                  FilledButton(
+                    onPressed: _onTapNextButton,
+                    child: Icon(Icons.login),
                   ),
-                  const SizedBox(height: 20),
-                  FilledButton(onPressed: () {}, child: Icon(Icons.login)),
                   const SizedBox(height: 30),
                   Center(
                     child: Column(
                       children: [
-                        TextButton(
-                          onPressed: _onTapForgotPasswordButton,
-                          child: Text(
-                            'forget password',
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                        ),
                         RichText(
                           text: TextSpan(
                             style: TextStyle(
@@ -66,10 +60,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.black,
                               decoration: TextDecoration.underline,
                             ),
-                            text: "Don't have account? ",
+                            text: "Already have account? ",
                             children: [
                               TextSpan(
-                                text: "Sign Up",
+                                text: "Log in",
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -77,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   decoration: TextDecoration.underline,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = _onTapSignUpButton,
+                                  ..onTap = _onTaploginUpButton,
                               ),
                             ],
                           ),
@@ -94,24 +88,24 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _onTapSignUpButton() {
+  void _onTaploginUpButton() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SignUpScreen()),
+      MaterialPageRoute(builder: (context) => LoginScreen()),
     );
   }
 
-  void _onTapForgotPasswordButton() {
+  void _onTapNextButton() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Forgot_Password()),
+      MaterialPageRoute(builder: (context) => Verify_otp()),
     );
   }
 
   @override
   void dispose() {
     _emailController.dispose();
-    _passwordController.dispose();
+
     super.dispose();
   }
 }
