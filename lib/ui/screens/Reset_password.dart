@@ -12,12 +12,12 @@ class Reset_passowrd extends StatefulWidget {
   State<Reset_passowrd> createState() => _Reset_passowrdState();
 }
 
-final TextEditingController _passwordController = TextEditingController();
-final TextEditingController _confirmPasswordController =
-    TextEditingController();
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
 class _Reset_passowrdState extends State<Reset_passowrd> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

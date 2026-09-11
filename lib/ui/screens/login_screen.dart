@@ -4,6 +4,7 @@ import 'package:task_manager/ui/screens/sign_up_screen.dart';
 import 'package:task_manager/ui/widgets/screen_backround.dart';
 
 import 'forgot_password.dart';
+import 'main_nav_bar_holder_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,11 +13,11 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-final TextEditingController _emailController = TextEditingController();
-final TextEditingController _passwordController = TextEditingController();
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(hintText: 'Password'),
                   ),
                   const SizedBox(height: 20),
-                  FilledButton(onPressed: () {}, child: Icon(Icons.login)),
+                  FilledButton(
+                    onPressed: _onTapLogedinButton,
+                    child: Icon(Icons.login),
+                  ),
                   const SizedBox(height: 30),
                   Center(
                     child: Column(
@@ -105,6 +109,13 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Forgot_Password()),
+    );
+  }
+
+  void _onTapLogedinButton() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MainNavBarHolderScreen()),
     );
   }
 

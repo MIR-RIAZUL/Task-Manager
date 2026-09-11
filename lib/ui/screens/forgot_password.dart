@@ -12,10 +12,10 @@ class Forgot_Password extends StatefulWidget {
   State<Forgot_Password> createState() => _Forgot_PasswordState();
 }
 
-final TextEditingController _emailController = TextEditingController();
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
 class _Forgot_PasswordState extends State<Forgot_Password> {
+  final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

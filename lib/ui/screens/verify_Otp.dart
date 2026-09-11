@@ -13,11 +13,10 @@ class Verify_otp extends StatefulWidget {
   State<Verify_otp> createState() => _Verify_otpState();
 }
 
-final TextEditingController _otpController = TextEditingController();
-
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
 class _Verify_otpState extends State<Verify_otp> {
+  final TextEditingController _otpController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
