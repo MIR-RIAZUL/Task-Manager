@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:flutter/services.dart';
 import 'package:task_manager/ui/widgets/screen_backround.dart';
 
 import 'Reset_password.dart';
@@ -41,30 +41,17 @@ class _Verify_otpState extends State<Verify_otp> {
                   ),
                   const SizedBox(height: 10),
 
-                  PinCodeTextField(
-                    length: 6,
-                    obscureText: false,
-                    keyboardType: TextInputType.number,
-                    animationType: AnimationType.fade,
-                    pinTheme: PinTheme(
-                      shape: PinCodeFieldShape.box,
-                      borderRadius: BorderRadius.circular(5),
-                      fieldHeight: 50,
-                      fieldWidth: 40,
-                      activeFillColor: Colors.white,
-                    ),
-                    animationDuration: Duration(milliseconds: 300),
-
-                    backgroundColor: Colors.transparent,
-
+                  TextFormField(
                     controller: _otpController,
-                    beforeTextPaste: (text) {
-                      print("Allowing to paste $text");
-                      //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                      //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                      return true;
-                    },
-                    appContext: context,
+                    keyboardType: TextInputType.number,
+                    maxLength: 6,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    decoration: InputDecoration(
+                      counterText: '',
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter 6-digit code',
+                    ),
+                    onChanged: (value) {},
                   ),
 
                   const SizedBox(height: 20),
